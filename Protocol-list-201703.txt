@@ -3,33 +3,26 @@
 2 	Bushnell, M. 	NCCIH 	Effects of Transcranial Magnetic Stimulation (TMS) on Somatosensory Perception 	14-AT-0100 
 3 	Bushnell, M. 	NCCIH 	Mechanisms of Pain Control in Chronic Pain Patients 	13-AT-0143 
 4 	Shaw, P. 	NHGRI 	The Neurobehavioral, Environmental and Genetic Factors Impacting the Clinical Course of Attention Deficit Hyperactivity Disorder 	12-HG-0202 
-
 17 	Li, S 	NIMH 	Development of Magnetic Resonance Spectroscopic Imaging Techniques for Imaging Metabolites and Neurotransmitters in Human Brain 	11-M-0045 
 18 	Bonnemann, C.G. 	NINDS 	Clinical and Molecular Manifestations of Neuromuscular and Neurogenetic Disorders of Childhood 	12-N-0095 
-
 21 	Duyn, J. H. 	NINDS 	An All-Night Functional Magnetic Resonance Imaging Sleep Study with Auditory Stimuli 	16-N-0031 
 22 	Koretsky, A 	NINDS 	Functional Brain Imaging in Healthy Volunteers to Study Cognitive Function 	14-N-0002 
 23 	Koretsky, A 	NINDS 	Characterization of Brain Morphology and Activity Using Functional and Anatomical MRI Contrast 	00-N-0082 
 24 	Inati, S. 	NINDS 	Noninvasive Pre-surgical Evaluation Of Patients with Focal Epilepsy 	14-N-0061 
-				
 14 	Hall, K. 	NIDDK 	Selective Reduction of Dietary Carbohydrate Versus Fat: Effects on Metabolism, Endocrine Physiology, Brain Activity and Reward Circuitary 	09-DK-0081 
-
 15 	Apud, J. A. 	NIMH 	Randomized, Double-Blinded, Placebo Controlled Study of the Effects of Modafinil on Cognitive Function is Patients with Schizophrenia and Normal Controls Based on COMT Genotype 	03-M-0143 
 16 	Baker, C. I. 	NIMH 	fMRI Investigation of Cortical Reorganization and Phantom Limb Pain Following Amputation 	08-M-0052 
 17 	Berman, KF 	NIMH 	Defining the Brain Pheontype of Children with Williams Syndrome 	10-M-0112 
 18 	Berman, KF 	NIMH 	Structural and Functional Imaging of Neuropsychiatric Patients and Normal Volunteers with 3.0 Tesla MRI and Magnetoencephalography 	00-M-0085 
 19 	Berman, KF 	NIMH 	A Neurobiological Investigation of Patients with Schzophrenia Spectrum Disorders and Their Siblings 	95-M-0150 
 20 	Berman, KF 	NIMH 	Studies of Frontal Lobe Function During Cognitive Stimulation as Measured with Oxygen-15 Water Positron Emission Tomography in Normal Subjects and Patients with Neuropsychiatric Disorders 	90-M-0014 
-
 23 	Ernst, M 	NIMH 	fMRI Spatial Context and Fear Conditioning 	15-M-0114 
 24 	Ernst, M 	NIMH 	Cognitive vs Emotional Psycho-Pharmacological Manipulations of Fear vs Anxiety 	14-M-0114 
 25 	Ernst, M 	NIMH 	The Psychobiology of Temperament: An fMRI Study 	03-M-0186 
-				
 26 	Giedd, J 	NIMH 	Brain Imaging of Childhood Onset Psychiatric Disorders, Endocrine Disorders and Healthy Controls 	89-M-0006 
 27 	Grillon, C 	NIMH 	fMRI Investigation of Explicit Cue and Contextual Fear 	02-M-0321 
 28 	Innnis, R 	NIMH 	Brain Inflammation in Major Depressive Disorder 	13-M-0100 
 29 	Innnis, R 	NIMH 	MRS (Magnetic Resonance Spectroscopy) Measurement of Glutamate and GABA 	05-M-0144 
-
 30 	Li, S 	NIMH 	Development of Magnetic Resonance Spectroscopic Imaging Techniques for Imaging Metabolites and Neurotransmitters in Human Brain 	11-M-0045 
 31 	Leibenluft, E 	NIMH 	The Phenomenology and Neurophysiology of Affective Dysregulation in Children and Adolescents with Bipolar Disorder 	00-M-0198 
 32 	Leibenluft, E 	NIMH 	Characterization and Pathophysiology of Severe Mood and Behavioral Dysregulation in Children and Youth 	02-M-0021 
@@ -48,11 +41,9 @@
 45 	Ungerleider, L 	NIMH 	TMS Investigations of the Human Visual System 	12-M-0128 
 46 	Ungerleider, L 	NIMH 	Top-Down Attentional Control of Visual-Processing 	10-M-0047 
 47 	Ungerleider, L 	NIMH 	Regional Cerebral Blood Flow Studies of Object Perception, Identification, Localization, and Memory 	93-M-0170 
-
 48 	Zarate, C. A. 	NIMH 	A Pathophysiological Study to Determine if Enhancing Glutamate Transporter Function Produces Antidepressant Effects in Patients with Major Depressive Disorder 	14-M-0041 
 49 	Zarate, C. A. 	NIMH 	Investigation of the Rapid (Next Day) Antidepressant Effects of an NMDA Antagonist 	04-M-0222 
 50 	Zarate, C. A. 	NIMH 	The Evaluation of Patients with Mood and Anxiety Disorders and Healthy Volunteers 	01-M-0254 
-
 51 	Bielekova, B 	NINDS 	Open Label Extension Trial of Idebenone for Primary Progressive Multiple Sclerosis 	13-N-0088 
 52 	Bielekova, B 	NINDS 	Investigating Mechanism of Action of DAC HYP in the Treatment of High-Inflammatory Multiple Sclerosis 	10-N-0125 
 53 	Bielekova, B 	NINDS 	Double Blind Placebo-Controlled Phase I/II Clinical Trial of Idebenone in Patients with Primary Progressive Multiple Sclerosis 	09-N-0197 
@@ -72,7 +63,6 @@
 67 	Maurer, C. W. 	NINDS 	Neurobiological Studies of Psychogenic Movement Disorders and Non-Epileptic Seizures 	07-N-0190 
 68 	Nath, A. 	NINDS 	Natural History Study of Inflammatory and Infectious Diseases of the Nervous System 	15-N-0125 
 69 	Nath, A. 	NINDS 	Natural History Study of Progressive Multifocal Leukoencephalopathy (PML) 	13-N-0017 
-
 70 	Reich, D 	NINDS 	The Pathological Basis of MRI Signal Changes in Multiple Sclerosis: A Longitudinal In Vivo-to-Postmortem Study 	16-N-0055 
 71 	Reich, D 	NINDS 	Thematic Studies of Multiple Sclerosis and Related Diseases 	15-N-0158 
 72 	Reich, D 	NINDS 	In Vivo Characterization of Inflammation with Ferumoxytol, an Ultrasmall Superparamagnetic Iron Oxide Nanoparticle on 7 Tesla Magnetic Resonance Imaging 	15-N-0156 
