@@ -15,8 +15,9 @@ library(stringr)
 ```{r}
 
 protocols <- read_csv('protocols.csv',col_names = 'protocol_id')%>%
-  mutate(protocol_id = str_trim(protocol_id))
-protocols %>%  View
+  mutate(protocol_id = str_trim(protocol_id)) 
+
+
 # not N or M
 
 
@@ -30,12 +31,61 @@ protocols_subset <-
                            "institute",
                            "description",
                            "protocol_id"),
-             sep = "|")
+             sep = "|") %>% 
+  mutate(protocol_id = str_trim(protocol_id))
+
 protocols_subset %>% View
 
 ```
 
 ```{r merging}
-
+%>% 
+  filter(is.na(institute)) %>%
+  filter(str_detect(prot_category, "^N$|^M$")) %>%
+  View
 ```
+
+```{r}
+```{r}
+protocols %>% anti_join(protocols_subset)
+protocols %>% 
+  left_join(protocols_subset) %>% 
+  mutate(prot_category = str_extract(protocol_id, "[A-Z]{1,2}")) 
+```
+
+
+
+```{r final_table}
+protocols_subset <- 
+  read.delim('Protocol-list-201703.txt',
+             col.names = c("num_id",
+                           "name",
+                           "institute",
+                           "description",
+                           "protocol_id"),
+             sep = "|") %>% 
+  mutate(protocol_id = str_trim(protocol_id),
+         prot_category = str_extract(protocol_id, "[A-Z]{1,2}")) %>% 
+  group_by(protocol_id) %>% 
+  summarise_all(first) 
+
+  
+
+n_m <- protocols_subset %>% 
+filter(str_detect(prot_category, "^N$|^M$")) %>% 
+  arrange(prot_category)
+
+not_n_m <- protocols_subset %>% 
+filter(!str_detect(prot_category, "^N$|^M$")) %>% 
+  arrange(prot_category)
+
+reorganized <- bind_rows(n_m, not_n_m) %>% transmute(Name =name, Protocol = protocol_id, Description = description) 
+reorganized %>% write_csv(path = ('output.csv'))
+# duplicates <- protocols_subset %>% count(protocol_id) %>% filter(n>1)
+# protocols_subset %>% right_join(duplicates) %>% View
+
+
+  
+```
+
 
