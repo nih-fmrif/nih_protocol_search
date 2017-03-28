@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(stringr)
+```
+
+```{r}
+
+protocols <- read_csv('protocols.csv',col_names = 'protocol_id')%>%
+  mutate(protocol_id = str_trim(protocol_id))
+protocols %>%  View
+# not N or M
+
+
+```
+
+```{r}
+protocols_subset <- 
+  read.delim('Protocol-list-201703.txt',
+             col.names = c("num_id",
+                           "name",
+                           "institute",
+                           "description",
+                           "protocol_id"),
+             sep = "|")
+protocols_subset %>% View
+
+```
+
+```{r merging}
+
+```
+
