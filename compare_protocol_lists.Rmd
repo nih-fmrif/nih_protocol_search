@@ -13,46 +13,9 @@ library(stringr)
 ```
 
 ```{r}
-
-protocols <- read_csv('protocols.csv',col_names = 'protocol_id')%>%
+all_protocols <- read_csv('protocols.csv',col_names = 'protocol_id')%>%
   mutate(protocol_id = str_trim(protocol_id)) 
-
-
-# not N or M
-
-
 ```
-
-```{r}
-protocols_subset <- 
-  read.delim('Protocol-list-201703.txt',
-             col.names = c("num_id",
-                           "name",
-                           "institute",
-                           "description",
-                           "protocol_id"),
-             sep = "|") %>% 
-  mutate(protocol_id = str_trim(protocol_id))
-
-protocols_subset %>% View
-
-```
-
-```{r merging}
-%>% 
-  filter(is.na(institute)) %>%
-  filter(str_detect(prot_category, "^N$|^M$")) %>%
-  View
-```
-
-```{r}
-```{r}
-protocols %>% anti_join(protocols_subset)
-protocols %>% 
-  left_join(protocols_subset) %>% 
-  mutate(prot_category = str_extract(protocol_id, "[A-Z]{1,2}")) 
-```
-
 
 
 ```{r final_table}
@@ -86,6 +49,29 @@ reorganized %>% write_csv(path = ('output.csv'))
 
 
   
+```
+
+
+```{r other_protocol_ids}
+  superset_specific <- 
+    all_protocols %>%
+    left_join(protocols_subset) %>% 
+    filter(is.na(institute)) %>% 
+    select(protocol_id) %>% 
+  mutate(prot_category = str_extract(protocol_id, "[A-Z]{1,2}"))
+    
+    
+n_and_m_ss <- superset_specific %>%
+  filter(str_detect(prot_category, "^N$|^M$")) %>% 
+  arrange(prot_category)
+
+not_n_and_m_ss <- superset_specific %>%
+  filter(!str_detect(prot_category, "^N$|^M$")) %>% 
+  arrange(prot_category)
+```
+```{r write_output_for_other_protocols}
+n_and_m_ss %>% write_csv('unaccounted_n_and_m.csv')
+not_n_and_m_ss %>% write_csv('unaccounted_others.csv')
 ```
 
 
