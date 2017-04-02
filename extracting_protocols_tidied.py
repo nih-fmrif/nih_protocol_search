@@ -5,21 +5,14 @@
 
 # ### Import packages
 
-# In[6]:
+# In[ ]:
 
 from pathlib import Path
 import pickle
 import pandas as pd
 import requests
 import numpy as np
-
-
-# ### Load protocol dataframes
-
-# In[7]:
-
-n_and_m = pd.read_csv('./protocols_unaccounted_n_and_m.csv')
-not_n_and_m = pd.read_csv('./protocols_unaccounted_others.csv')
+from bs4 import BeautifulSoup
 
 
 # ### Define functions
@@ -75,9 +68,9 @@ def get_prot_info_at_link_3(s):
         protocol_page = requests.get(s.link_3)
         df_prot = pd.read_html(protocol_page.text)
         s = pd.concat([s,
-                              pd.Series(data=df_prot[0][1].tolist(),index=df_prot[0][0].tolist()),
-                              pd.Series(data=df_prot[1].T[1].tolist(),index=df_prot[1].T[0].tolist())],
-                             axis = 0)
+                       pd.Series(data=df_prot[0][1].tolist(),index=df_prot[0][0].tolist()),
+                       pd.Series(data=df_prot[1].T[1].tolist(),index=df_prot[1].T[0].tolist())],
+                      axis = 0)
     except:
         pass
     return s
@@ -85,21 +78,60 @@ def get_prot_info_at_link_3(s):
 
 def scrape_set_of_protocols(input_protocols_df):
     """Given a set of protocols (as a dataframe), search and scrape available info at clinical studies.info.nih.gov """
-    try:
-        with Path('page_results').open('rb') as f:
-            page_results = pickle.load(f)
-    except:
-        page_results = get_results_of_queries(input_protocols_df)
-        with Path.cwd().joinpath('page_results').open("wb") as f:
-            pickle.dump(page_results, f, pickle.HIGHEST_PROTOCOL)
-
+    page_results = get_results_of_queries(input_protocols_df)
     df_scraped = scrape_results_of_queries(page_results, input_protocols_df)
     df_scraped = df_scraped.apply(get_prot_info_at_link_3, axis = 1)
     return df_scraped
 
 
+# ### Load protocol dataframes
+
+# In[ ]:
+
+n_and_m = pd.read_csv('./protocols_unaccounted_n_and_m.csv')
+not_n_and_m = pd.read_csv('./protocols_unaccounted_others.csv')
+n_and_m.head()
+
+
 # # Do the scraping
 # 
+
+# In[ ]:
+
+n_and_m_scraped = scrape_set_of_protocols(n_and_m)
+
+
+# In[ ]:
+
+not_n_and_m_scraped = scrape_set_of_protocols(not_n_and_m)
+
+
+# ### Checking the output
+# 
+# For protocols outside NIMH and NINDS we can check the number of protocols queried and the number of filled values for each category:
+
+# In[ ]:
+
+len(not_n_and_m_scraped)
+
+
+# In[ ]:
+
+not_n_and_m_scraped.count()
+
+
+# 
+# For protocols in NIMH and NINDS the number of protocols queried and the number of filled values for each category:
+
+# In[ ]:
+
+len(n_and_m)
+
+
+# In[ ]:
+
+n_and_m_scraped.count()
+
 
 # In[ ]:
 
