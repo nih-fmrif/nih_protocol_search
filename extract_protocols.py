@@ -5,7 +5,7 @@
 
 # ### Import packages
 
-# In[ ]:
+# In[1]:
 
 from pathlib import Path
 import pickle
@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 
 # ### Define functions
 
-# In[ ]:
+# In[2]:
 
 def add_link_to_protocol_query(df_protocols):
     query_base = 'https://clinicalstudies.info.nih.gov/cgi/cs/processqry2.pl?search1='
@@ -75,18 +75,28 @@ def get_prot_info_at_link_3(s):
         pass
     return s
 
+def tidy_df_scraped(df_scraped):
+    df_scraped = (df_scraped.iloc[:,df_scraped.columns == df_scraped.columns].
+                  drop(['Number'], axis = 1).
+                  set_index('protocol_id').
+                  reset_index())
+    return df_scraped
+    
 
 def scrape_set_of_protocols(input_protocols_df):
     """Given a set of protocols (as a dataframe), search and scrape available info at clinical studies.info.nih.gov """
-    page_results = get_results_of_queries(input_protocols_df)
-    df_scraped = scrape_results_of_queries(page_results, input_protocols_df)
+    df_queries = add_link_to_protocol_query(input_protocols_df)
+    page_results = get_pages_at_link_1(df_queries)
+    df_scraped = scrape_results_of_queries(page_results, df_queries)
     df_scraped = df_scraped.apply(get_prot_info_at_link_3, axis = 1)
+    df_scraped = tidy_df_scraped(df_scraped)
+
     return df_scraped
 
 
 # ### Load protocol dataframes
 
-# In[ ]:
+# In[3]:
 
 n_and_m = pd.read_csv('./protocols_unaccounted_n_and_m.csv')
 not_n_and_m = pd.read_csv('./protocols_unaccounted_others.csv')
@@ -96,26 +106,26 @@ n_and_m.head()
 # # Do the scraping
 # 
 
-# In[ ]:
+# In[4]:
 
 n_and_m_scraped = scrape_set_of_protocols(n_and_m)
 
 
-# In[ ]:
+# In[5]:
 
 not_n_and_m_scraped = scrape_set_of_protocols(not_n_and_m)
 
 
-# ### Checking the output
+# # Check the output
 # 
 # For protocols outside NIMH and NINDS we can check the number of protocols queried and the number of filled values for each category:
 
-# In[ ]:
+# In[6]:
 
 len(not_n_and_m_scraped)
 
 
-# In[ ]:
+# In[7]:
 
 not_n_and_m_scraped.count()
 
@@ -123,17 +133,30 @@ not_n_and_m_scraped.count()
 # 
 # For protocols in NIMH and NINDS the number of protocols queried and the number of filled values for each category:
 
-# In[ ]:
+# In[8]:
 
 len(n_and_m)
 
 
-# In[ ]:
+# In[9]:
 
 n_and_m_scraped.count()
 
 
-# In[ ]:
+# # Write output
+
+# In[10]:
+
+# had to install some packages
+# !conda install -y openpyxl
+#!conda install -y jdcal
+# !conda install -y et_xmlfile
+n_and_m_scraped.to_excel(excel_writer="n_and_m_scraped.xlsx",sheet_name="scraped_protocols",na_rep="NA")
 
 
+# In[11]:
+
+not_n_and_m_scraped.to_excel(excel_writer="not_n_and_m_scraped.xlsx",sheet_name="scraped_protocols",na_rep="NA")
+# can't get this to work well yet:
+# not_n_and_m_scraped.to_csv(path_or_buf = 'not_n_and_m_scraped.csv') 
 
